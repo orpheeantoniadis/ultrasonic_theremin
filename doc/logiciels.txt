@@ -1,0 +1,32 @@
+ModelSim :
+- Créer bibliothèque work (File -> New -> Library)
+- Compiler fichier (Compile -> Compile...)
+- Lancer la simulation (Simulation -> Start Simulation)
+- Modifier fenêtres visibles (View)
+!!! Penser à drag & drop les signaux dans la vue Wave !!!
+- Générer signaux avec commande force (force data_in v0 t0, v1 t1, ...)
+- Stocker commandes dans un script (script.do)
+- Lancer le script (do script.do)
+
+Quartus :
+!!! Bien préciser le modèle de la carte !!!
+- C:/AlteraQuartus/quartus/bin64/quartus.exe
+- key0 : j15, key1 : e1, LED0 : a15
+- Assigner dans Pin Planner en écrivant les bon pins dans Location
+- Compiler (Processing -> Start Compilation)
+- Visualiser circuit (Tools -> Netlist Viewers -> RTL Viewer)
+		      (Tools -> Netlist Viewers -> Technology Map Viewer)
+- Programmer (Tools -> Programmer)
+
+Quartus/SignalTap:
+- double click pour rajouter des entrées/sorties
+- Dans le node finder changer le filtre Design Entry puis List et Insert
+- Dans le tableau des entréer changer la condition de trigger avec click droit
+- A droite rajouter la clock système
+!!! bien vérifier que tous les fichiers sont bien dans /Files !!!
+- Onglet Data et Run ou Autorun
+
+QSys :
+- add interface -> Conduit for exports
+		 -> Reset input for rst
+		 -> Interrupt sender for irq
