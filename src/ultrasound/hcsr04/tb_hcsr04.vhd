@@ -14,7 +14,7 @@ architecture behavior of tb_hcsr04 is
 
 	--Outputs
 	signal trig : std_logic;
-	signal dist : std_logic_vector(15 downto 0);
+	signal dist : std_logic_vector(31 downto 0);
 
 	-- Clock period definitions
 	constant clock_period : time := 20 ns;
@@ -26,7 +26,7 @@ architecture behavior of tb_hcsr04 is
 			rst : in std_logic;
 			echo : in std_logic;
 			trig : out std_logic;
-			dist : out std_logic_vector(15 downto 0)
+			dist : out std_logic_vector(31 downto 0)
 		);
 	end component;
 

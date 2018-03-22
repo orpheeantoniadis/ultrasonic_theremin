@@ -20,11 +20,11 @@ architecture struct_behav of test_ultrasound is
 			rst : in std_logic;
 			echo : in std_logic;
 			trig : out std_logic;
-			dist : out std_logic_vector(15 downto 0)
+			dist : out std_logic_vector(31 downto 0)
 		);
 	end component;
 
-	signal calc_dist : std_logic_vector(15 downto 0);
+	signal calc_dist : std_logic_vector(31 downto 0);
 
 begin
 	uut : hcsr04
