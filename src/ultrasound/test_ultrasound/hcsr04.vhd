@@ -49,6 +49,8 @@ begin
 	process(clk, rst)
 	variable computing : std_logic;
 	variable calc_dist : std_logic_vector(31 downto 0);
+	variable sum_count : unsigned(7 downto 0);
+	variable sum : unsigned(31 downto 0);
 	
 	begin
 		if rst = '1' then
@@ -57,6 +59,8 @@ begin
 			echo_count <= (others => '0');
 			computing := '0';
 			calc_dist := (others => '0');
+			sum := (others => '0');
+			sum_count := (others => '0');
 		elsif rising_edge(clk) then
 			if computing = '0' then
 				trig <= '1';
@@ -70,10 +74,16 @@ begin
 				echo_count <= echo_count + 1;
 			elsif std_logic_vector(echo_count) /= rate_0 then
 				computing := '0';
-				calc_dist := std_logic_vector(echo_count);
+				sum := sum + echo_count;
+				sum_count := sum_count + 1;
 			elsif std_logic_vector(echo_count) = rate_25ms then
 				computing := '0';
-				calc_dist := std_logic_vector(echo_count);
+				sum := sum + echo_count;
+				sum_count := sum_count + 1;
+			elsif std_logic_vector(sum_count) = "01100100" then
+				calc_dist := "00000000" & std_logic_vector(sum(31 downto 8));
+				sum := (others => '0');
+				sum_count := (others => '0');
 			end if;
 			dist <= calc_dist;
 		end if;

@@ -30,13 +30,13 @@ begin
 	uut : hcsr04
 	port map (
 		clk => CLOCK,
-		rst => Button_n0,
+		rst => not Button_n0,
 		echo => GPIO_2_D3,
 		trig => GPIO_2_D2,
 		dist => calc_dist
 	);
 	
-	Sw_LedA <= calc_dist(15 downto 8);
-	Sw_LedB <= calc_dist(7 downto 0);
+	Sw_LedA <= calc_dist(31 downto 24);
+	Sw_LedB <= calc_dist(23 downto 16);
 
 end struct_behav;
