@@ -4,9 +4,13 @@
 ### Eclipse ###
 
 .metadata
-RemoteSystemsTempFiles
+RemoteSystemsTempFiles/
 bin/
 tmp/
+obj/
+*.elf
+*.map
+*.objdump
 *.tmp
 *.bak
 *.swp
