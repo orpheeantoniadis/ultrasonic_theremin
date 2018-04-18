@@ -14,17 +14,20 @@
 #include "os/alt_hooks.h"
 #include "alt_types.h"
 
-#define PIXEL_COUNT	96
+#define PIXEL_COUNT		96
+#define MATRIX_RED		4
+#define MATRIX_GREEN	2
+#define MATRIX_BLUE		1
 
-uint8_t happy_smiley[96] =
+const uint8_t empty_matrix[96] =
 {
 		0,0,0,0,0,0,0,0,0,0,0,0,
 		0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,6,0,0,0,0,6,0,0,0,
 		0,0,0,0,0,0,0,0,0,0,0,0,
 		0,0,0,0,0,0,0,0,0,0,0,0,
-		0,6,0,0,0,0,0,0,0,0,6,0,
-		0,0,6,6,6,6,6,6,6,6,0,0,
+		0,0,0,0,0,0,0,0,0,0,0,0,
+		0,0,0,0,0,0,0,0,0,0,0,0,
+		0,0,0,0,0,0,0,0,0,0,0,0,
 		0,0,0,0,0,0,0,0,0,0,0,0,
 };
 
@@ -54,7 +57,19 @@ float get_distance0(void) {
 	return dist;
 }
 
+/*-------------------------------------------------------*/
+/*									LED MATRIX functions								 */
+/*-------------------------------------------------------*/
+
 static inline void set_pixel(uint8_t x, uint8_t y, uint8_t rgb) { IOWR_16DIRECT(LEDMATRIX_0_BASE, (y*12+x)*2, rgb); }
+
+void set_column(uint8_t x, uint8_t amplitude, uint8_t rgb) {
+	uint8_t i;
+	
+	for (i = 7; i > (7-amplitude); i--) {
+		set_pixel(x, i, MATRIX_GREEN);
+	}
+}
 
 void set_matrix(uint8_t matrix[PIXEL_COUNT]) {
 	uint8_t i;
@@ -68,8 +83,7 @@ int main() {
 	float distance;
 
 	init_switch_leds();
-	set_matrix(happy_smiley);
-	set_pixel(5, 4, 7);
+	set_matrix(empty_matrix);
 
 	while(1) {
 		distance = get_distance0();
