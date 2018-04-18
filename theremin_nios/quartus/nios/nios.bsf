@@ -1,0 +1,180 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Intel and sold by Intel or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+*/
+(header "symbol" (version "1.1"))
+(symbol
+	(rect 0 0 416 528)
+	(text "nios" (rect 197 -1 212 11)(font "Arial" (font_size 10)))
+	(text "inst" (rect 8 512 20 524)(font "Arial" ))
+	(port
+		(pt 0 72)
+		(input)
+		(text "clk_clk" (rect 0 0 27 12)(font "Arial" (font_size 8)))
+		(text "clk_clk" (rect 4 61 46 72)(font "Arial" (font_size 8)))
+		(line (pt 0 72)(pt 176 72)(line_width 1))
+	)
+	(port
+		(pt 0 440)
+		(input)
+		(text "reset_reset_n" (rect 0 0 56 12)(font "Arial" (font_size 8)))
+		(text "reset_reset_n" (rect 4 429 82 440)(font "Arial" (font_size 8)))
+		(line (pt 0 440)(pt 176 440)(line_width 1))
+	)
+	(port
+		(pt 0 480)
+		(input)
+		(text "ultrasound_export_echo" (rect 0 0 95 12)(font "Arial" (font_size 8)))
+		(text "ultrasound_export_echo" (rect 4 469 136 480)(font "Arial" (font_size 8)))
+		(line (pt 0 480)(pt 176 480)(line_width 1))
+	)
+	(port
+		(pt 0 112)
+		(output)
+		(text "i2s0_export_mck" (rect 0 0 69 12)(font "Arial" (font_size 8)))
+		(text "i2s0_export_mck" (rect 4 101 94 112)(font "Arial" (font_size 8)))
+		(line (pt 0 112)(pt 176 112)(line_width 1))
+	)
+	(port
+		(pt 0 128)
+		(output)
+		(text "i2s0_export_lrck" (rect 0 0 66 12)(font "Arial" (font_size 8)))
+		(text "i2s0_export_lrck" (rect 4 117 100 128)(font "Arial" (font_size 8)))
+		(line (pt 0 128)(pt 176 128)(line_width 1))
+	)
+	(port
+		(pt 0 144)
+		(output)
+		(text "i2s0_export_data" (rect 0 0 68 12)(font "Arial" (font_size 8)))
+		(text "i2s0_export_data" (rect 4 133 100 144)(font "Arial" (font_size 8)))
+		(line (pt 0 144)(pt 176 144)(line_width 1))
+	)
+	(port
+		(pt 0 160)
+		(output)
+		(text "i2s0_export_sck" (rect 0 0 66 12)(font "Arial" (font_size 8)))
+		(text "i2s0_export_sck" (rect 4 149 94 160)(font "Arial" (font_size 8)))
+		(line (pt 0 160)(pt 176 160)(line_width 1))
+	)
+	(port
+		(pt 0 200)
+		(output)
+		(text "led_sel_b_export_readdata[7..0]" (rect 0 0 128 12)(font "Arial" (font_size 8)))
+		(text "led_sel_b_export_readdata[7..0]" (rect 4 189 190 200)(font "Arial" (font_size 8)))
+		(line (pt 0 200)(pt 176 200)(line_width 3))
+	)
+	(port
+		(pt 0 240)
+		(output)
+		(text "led_sel_g_export_readdata[7..0]" (rect 0 0 128 12)(font "Arial" (font_size 8)))
+		(text "led_sel_g_export_readdata[7..0]" (rect 4 229 190 240)(font "Arial" (font_size 8)))
+		(line (pt 0 240)(pt 176 240)(line_width 3))
+	)
+	(port
+		(pt 0 280)
+		(output)
+		(text "led_sel_r_export_readdata[7..0]" (rect 0 0 127 12)(font "Arial" (font_size 8)))
+		(text "led_sel_r_export_readdata[7..0]" (rect 4 269 190 280)(font "Arial" (font_size 8)))
+		(line (pt 0 280)(pt 176 280)(line_width 3))
+	)
+	(port
+		(pt 0 320)
+		(output)
+		(text "led_selc_n_export_readdata[11..0]" (rect 0 0 135 12)(font "Arial" (font_size 8)))
+		(text "led_selc_n_export_readdata[11..0]" (rect 4 309 202 320)(font "Arial" (font_size 8)))
+		(line (pt 0 320)(pt 176 320)(line_width 3))
+	)
+	(port
+		(pt 0 360)
+		(output)
+		(text "ledsa_export_export[7..0]" (rect 0 0 101 12)(font "Arial" (font_size 8)))
+		(text "ledsa_export_export[7..0]" (rect 4 349 154 360)(font "Arial" (font_size 8)))
+		(line (pt 0 360)(pt 176 360)(line_width 3))
+	)
+	(port
+		(pt 0 400)
+		(output)
+		(text "ledsb_export_export[7..0]" (rect 0 0 101 12)(font "Arial" (font_size 8)))
+		(text "ledsb_export_export[7..0]" (rect 4 389 154 400)(font "Arial" (font_size 8)))
+		(line (pt 0 400)(pt 176 400)(line_width 3))
+	)
+	(port
+		(pt 0 496)
+		(output)
+		(text "ultrasound_export_trig" (rect 0 0 88 12)(font "Arial" (font_size 8)))
+		(text "ultrasound_export_trig" (rect 4 485 136 496)(font "Arial" (font_size 8)))
+		(line (pt 0 496)(pt 176 496)(line_width 1))
+	)
+	(drawing
+		(text "clk" (rect 161 43 340 99)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "clk" (rect 181 67 380 144)(font "Arial" (color 0 0 0)))
+		(text "i2s0_export" (rect 109 83 284 179)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "mck" (rect 181 107 380 224)(font "Arial" (color 0 0 0)))
+		(text "lrck" (rect 181 123 386 256)(font "Arial" (color 0 0 0)))
+		(text "data" (rect 181 139 386 288)(font "Arial" (color 0 0 0)))
+		(text "sck" (rect 181 155 380 320)(font "Arial" (color 0 0 0)))
+		(text "led_sel_b_export" (rect 76 171 248 355)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "readdata" (rect 181 195 410 400)(font "Arial" (color 0 0 0)))
+		(text "led_sel_g_export" (rect 76 211 248 435)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "readdata" (rect 181 235 410 480)(font "Arial" (color 0 0 0)))
+		(text "led_sel_r_export" (rect 78 251 252 515)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "readdata" (rect 181 275 410 560)(font "Arial" (color 0 0 0)))
+		(text "led_selc_n_export" (rect 70 291 242 595)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "readdata" (rect 181 315 410 640)(font "Arial" (color 0 0 0)))
+		(text "ledsa_export" (rect 102 331 276 675)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "export" (rect 181 355 398 720)(font "Arial" (color 0 0 0)))
+		(text "ledsb_export" (rect 102 371 276 755)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "export" (rect 181 395 398 800)(font "Arial" (color 0 0 0)))
+		(text "reset" (rect 147 411 324 835)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "reset_n" (rect 181 435 404 880)(font "Arial" (color 0 0 0)))
+		(text "ultrasound_export" (rect 72 451 246 915)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "echo" (rect 181 475 386 960)(font "Arial" (color 0 0 0)))
+		(text "trig" (rect 181 491 386 992)(font "Arial" (color 0 0 0)))
+		(text " nios " (rect 396 512 828 1034)(font "Arial" ))
+		(line (pt 176 32)(pt 240 32)(line_width 1))
+		(line (pt 240 32)(pt 240 512)(line_width 1))
+		(line (pt 176 512)(pt 240 512)(line_width 1))
+		(line (pt 176 32)(pt 176 512)(line_width 1))
+		(line (pt 177 52)(pt 177 76)(line_width 1))
+		(line (pt 178 52)(pt 178 76)(line_width 1))
+		(line (pt 177 92)(pt 177 164)(line_width 1))
+		(line (pt 178 92)(pt 178 164)(line_width 1))
+		(line (pt 177 180)(pt 177 204)(line_width 1))
+		(line (pt 178 180)(pt 178 204)(line_width 1))
+		(line (pt 177 220)(pt 177 244)(line_width 1))
+		(line (pt 178 220)(pt 178 244)(line_width 1))
+		(line (pt 177 260)(pt 177 284)(line_width 1))
+		(line (pt 178 260)(pt 178 284)(line_width 1))
+		(line (pt 177 300)(pt 177 324)(line_width 1))
+		(line (pt 178 300)(pt 178 324)(line_width 1))
+		(line (pt 177 340)(pt 177 364)(line_width 1))
+		(line (pt 178 340)(pt 178 364)(line_width 1))
+		(line (pt 177 380)(pt 177 404)(line_width 1))
+		(line (pt 178 380)(pt 178 404)(line_width 1))
+		(line (pt 177 420)(pt 177 444)(line_width 1))
+		(line (pt 178 420)(pt 178 444)(line_width 1))
+		(line (pt 177 460)(pt 177 500)(line_width 1))
+		(line (pt 178 460)(pt 178 500)(line_width 1))
+		(line (pt 0 0)(pt 416 0)(line_width 1))
+		(line (pt 416 0)(pt 416 528)(line_width 1))
+		(line (pt 0 528)(pt 416 528)(line_width 1))
+		(line (pt 0 0)(pt 0 528)(line_width 1))
+	)
+)
