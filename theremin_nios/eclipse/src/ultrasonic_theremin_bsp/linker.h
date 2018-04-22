@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu' in SOPC Builder design 'nios'
  * SOPC Builder design path: Z:/fpga/mini_projet/theremin_nios/quartus/nios.sopcinfo
  *
- * Generated: Thu Mar 29 15:46:20 CEST 2018
+ * Generated: Thu Apr 19 14:11:13 CEST 2018
  */
 
 /*
@@ -65,9 +65,9 @@
  *
  */
 
-#define ONCHIP_RAM_REGION_BASE 0x4020
-#define ONCHIP_RAM_REGION_SPAN 16352
-#define RESET_REGION_BASE 0x4000
+#define ONCHIP_RAM_REGION_BASE 0x8020
+#define ONCHIP_RAM_REGION_SPAN 32736
+#define RESET_REGION_BASE 0x8000
 #define RESET_REGION_SPAN 32
 
 

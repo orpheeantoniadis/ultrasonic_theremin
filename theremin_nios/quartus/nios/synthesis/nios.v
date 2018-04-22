@@ -4,27 +4,33 @@
 
 `timescale 1 ps / 1 ps
 module nios (
-		input  wire        clk_clk,                    //               clk.clk
-		output wire        i2s0_export_mck,            //       i2s0_export.mck
-		output wire        i2s0_export_lrck,           //                  .lrck
-		output wire        i2s0_export_data,           //                  .data
-		output wire        i2s0_export_sck,            //                  .sck
-		output wire [7:0]  led_sel_b_export_readdata,  //  led_sel_b_export.readdata
-		output wire [7:0]  led_sel_g_export_readdata,  //  led_sel_g_export.readdata
-		output wire [7:0]  led_sel_r_export_readdata,  //  led_sel_r_export.readdata
-		output wire [11:0] led_selc_n_export_readdata, // led_selc_n_export.readdata
-		output wire [7:0]  ledsa_export_export,        //      ledsa_export.export
-		output wire [7:0]  ledsb_export_export,        //      ledsb_export.export
-		input  wire        reset_reset_n,              //             reset.reset_n
-		input  wire        ultrasound_export_echo,     // ultrasound_export.echo
-		output wire        ultrasound_export_trig      //                  .trig
+		input  wire        clk_clk,                    //                 clk.clk
+		output wire        i2s0_export_mck,            //         i2s0_export.mck
+		output wire        i2s0_export_lrck,           //                    .lrck
+		output wire        i2s0_export_data,           //                    .data
+		output wire        i2s0_export_sck,            //                    .sck
+		output wire [7:0]  led_sel_b_export_readdata,  //    led_sel_b_export.readdata
+		output wire [7:0]  led_sel_g_export_readdata,  //    led_sel_g_export.readdata
+		output wire [7:0]  led_sel_r_export_readdata,  //    led_sel_r_export.readdata
+		output wire [11:0] led_selc_n_export_readdata, //   led_selc_n_export.readdata
+		output wire [7:0]  ledsa_export_export,        //        ledsa_export.export
+		output wire [7:0]  ledsb_export_export,        //        ledsb_export.export
+		input  wire        reset_reset_n,              //               reset.reset_n
+		input  wire        ultrasound_export_0_echo,   // ultrasound_export_0.echo
+		output wire        ultrasound_export_0_trig,   //                    .trig
+		input  wire        ultrasound_export_1_echo,   // ultrasound_export_1.echo
+		output wire        ultrasound_export_1_trig,   //                    .trig
+		input  wire        ultrasound_export_2_echo,   // ultrasound_export_2.echo
+		output wire        ultrasound_export_2_trig,   //                    .trig
+		input  wire        ultrasound_export_3_echo,   // ultrasound_export_3.echo
+		output wire        ultrasound_export_3_trig    //                    .trig
 	);
 
 	wire         altpll_0_c0_clk;                                           // altpll_0:c0 -> [I2S_0:clock, mm_interconnect_0:altpll_0_c0_clk, rst_controller:clk]
 	wire  [31:0] cpu_data_master_readdata;                                  // mm_interconnect_0:cpu_data_master_readdata -> cpu:d_readdata
 	wire         cpu_data_master_waitrequest;                               // mm_interconnect_0:cpu_data_master_waitrequest -> cpu:d_waitrequest
 	wire         cpu_data_master_debugaccess;                               // cpu:debug_mem_slave_debugaccess_to_roms -> mm_interconnect_0:cpu_data_master_debugaccess
-	wire  [15:0] cpu_data_master_address;                                   // cpu:d_address -> mm_interconnect_0:cpu_data_master_address
+	wire  [16:0] cpu_data_master_address;                                   // cpu:d_address -> mm_interconnect_0:cpu_data_master_address
 	wire   [3:0] cpu_data_master_byteenable;                                // cpu:d_byteenable -> mm_interconnect_0:cpu_data_master_byteenable
 	wire         cpu_data_master_read;                                      // cpu:d_read -> mm_interconnect_0:cpu_data_master_read
 	wire         cpu_data_master_readdatavalid;                             // mm_interconnect_0:cpu_data_master_readdatavalid -> cpu:d_readdatavalid
@@ -32,7 +38,7 @@ module nios (
 	wire  [31:0] cpu_data_master_writedata;                                 // cpu:d_writedata -> mm_interconnect_0:cpu_data_master_writedata
 	wire  [31:0] cpu_instruction_master_readdata;                           // mm_interconnect_0:cpu_instruction_master_readdata -> cpu:i_readdata
 	wire         cpu_instruction_master_waitrequest;                        // mm_interconnect_0:cpu_instruction_master_waitrequest -> cpu:i_waitrequest
-	wire  [15:0] cpu_instruction_master_address;                            // cpu:i_address -> mm_interconnect_0:cpu_instruction_master_address
+	wire  [16:0] cpu_instruction_master_address;                            // cpu:i_address -> mm_interconnect_0:cpu_instruction_master_address
 	wire         cpu_instruction_master_read;                               // cpu:i_read -> mm_interconnect_0:cpu_instruction_master_read
 	wire         cpu_instruction_master_readdatavalid;                      // mm_interconnect_0:cpu_instruction_master_readdatavalid -> cpu:i_readdatavalid
 	wire         mm_interconnect_0_jtag_uart_avalon_jtag_slave_chipselect;  // mm_interconnect_0:jtag_uart_avalon_jtag_slave_chipselect -> jtag_uart:av_chipselect
@@ -55,6 +61,15 @@ module nios (
 	wire   [2:0] mm_interconnect_0_i2s_0_avalon_slave_0_address;            // mm_interconnect_0:I2S_0_avalon_slave_0_address -> I2S_0:addresse
 	wire         mm_interconnect_0_i2s_0_avalon_slave_0_write;              // mm_interconnect_0:I2S_0_avalon_slave_0_write -> I2S_0:write
 	wire  [15:0] mm_interconnect_0_i2s_0_avalon_slave_0_writedata;          // mm_interconnect_0:I2S_0_avalon_slave_0_writedata -> I2S_0:write_data
+	wire         mm_interconnect_0_ultrasound_1_avalon_slave_0_chipselect;  // mm_interconnect_0:ultrasound_1_avalon_slave_0_chipselect -> ultrasound_1:ChipSelect
+	wire  [31:0] mm_interconnect_0_ultrasound_1_avalon_slave_0_readdata;    // ultrasound_1:ReadData -> mm_interconnect_0:ultrasound_1_avalon_slave_0_readdata
+	wire         mm_interconnect_0_ultrasound_1_avalon_slave_0_read;        // mm_interconnect_0:ultrasound_1_avalon_slave_0_read -> ultrasound_1:Read
+	wire         mm_interconnect_0_ultrasound_2_avalon_slave_0_chipselect;  // mm_interconnect_0:ultrasound_2_avalon_slave_0_chipselect -> ultrasound_2:ChipSelect
+	wire  [31:0] mm_interconnect_0_ultrasound_2_avalon_slave_0_readdata;    // ultrasound_2:ReadData -> mm_interconnect_0:ultrasound_2_avalon_slave_0_readdata
+	wire         mm_interconnect_0_ultrasound_2_avalon_slave_0_read;        // mm_interconnect_0:ultrasound_2_avalon_slave_0_read -> ultrasound_2:Read
+	wire         mm_interconnect_0_ultrasound_3_avalon_slave_0_chipselect;  // mm_interconnect_0:ultrasound_3_avalon_slave_0_chipselect -> ultrasound_3:ChipSelect
+	wire  [31:0] mm_interconnect_0_ultrasound_3_avalon_slave_0_readdata;    // ultrasound_3:ReadData -> mm_interconnect_0:ultrasound_3_avalon_slave_0_readdata
+	wire         mm_interconnect_0_ultrasound_3_avalon_slave_0_read;        // mm_interconnect_0:ultrasound_3_avalon_slave_0_read -> ultrasound_3:Read
 	wire  [31:0] mm_interconnect_0_sys_id_control_slave_readdata;           // Sys_ID:readdata -> mm_interconnect_0:Sys_ID_control_slave_readdata
 	wire   [0:0] mm_interconnect_0_sys_id_control_slave_address;            // mm_interconnect_0:Sys_ID_control_slave_address -> Sys_ID:address
 	wire  [31:0] mm_interconnect_0_cpu_debug_mem_slave_readdata;            // cpu:debug_mem_slave_readdata -> mm_interconnect_0:cpu_debug_mem_slave_readdata
@@ -72,7 +87,7 @@ module nios (
 	wire  [31:0] mm_interconnect_0_altpll_0_pll_slave_writedata;            // mm_interconnect_0:altpll_0_pll_slave_writedata -> altpll_0:writedata
 	wire         mm_interconnect_0_onchip_ram_s1_chipselect;                // mm_interconnect_0:onchip_ram_s1_chipselect -> onchip_ram:chipselect
 	wire  [31:0] mm_interconnect_0_onchip_ram_s1_readdata;                  // onchip_ram:readdata -> mm_interconnect_0:onchip_ram_s1_readdata
-	wire  [11:0] mm_interconnect_0_onchip_ram_s1_address;                   // mm_interconnect_0:onchip_ram_s1_address -> onchip_ram:address
+	wire  [12:0] mm_interconnect_0_onchip_ram_s1_address;                   // mm_interconnect_0:onchip_ram_s1_address -> onchip_ram:address
 	wire   [3:0] mm_interconnect_0_onchip_ram_s1_byteenable;                // mm_interconnect_0:onchip_ram_s1_byteenable -> onchip_ram:byteenable
 	wire         mm_interconnect_0_onchip_ram_s1_write;                     // mm_interconnect_0:onchip_ram_s1_write -> onchip_ram:write
 	wire  [31:0] mm_interconnect_0_onchip_ram_s1_writedata;                 // mm_interconnect_0:onchip_ram_s1_writedata -> onchip_ram:writedata
@@ -97,7 +112,7 @@ module nios (
 	wire  [31:0] cpu_irq_irq;                                               // irq_mapper:sender_irq -> cpu:irq
 	wire         rst_controller_reset_out_reset;                            // rst_controller:reset_out -> [I2S_0:nReset, mm_interconnect_0:I2S_0_reset_sink_reset_bridge_in_reset_reset]
 	wire         cpu_debug_reset_request_reset;                             // cpu:debug_reset_request -> [rst_controller:reset_in1, rst_controller_001:reset_in1]
-	wire         rst_controller_001_reset_out_reset;                        // rst_controller_001:reset_out -> [Sys_ID:reset_n, altpll_0:reset, cpu:reset_n, irq_mapper:reset, jtag_uart:rst_n, ledmatrix_0:nReset, ledsA:reset_n, ledsB:reset_n, mm_interconnect_0:cpu_reset_reset_bridge_in_reset_reset, onchip_ram:reset, rst_translator:in_reset, ultrasound_0:nReset]
+	wire         rst_controller_001_reset_out_reset;                        // rst_controller_001:reset_out -> [Sys_ID:reset_n, altpll_0:reset, cpu:reset_n, irq_mapper:reset, jtag_uart:rst_n, ledmatrix_0:nReset, ledsA:reset_n, ledsB:reset_n, mm_interconnect_0:cpu_reset_reset_bridge_in_reset_reset, onchip_ram:reset, rst_translator:in_reset, ultrasound_0:nReset, ultrasound_1:nReset, ultrasound_2:nReset, ultrasound_3:nReset]
 	wire         rst_controller_001_reset_out_reset_req;                    // rst_controller_001:reset_req -> [cpu:reset_req, onchip_ram:reset_req, rst_translator:reset_req_in]
 	wire         rst_controller_002_reset_out_reset;                        // rst_controller_002:reset_out -> [mm_interconnect_0:timer_0_reset_reset_bridge_in_reset_reset, timer_0:reset_n]
 
@@ -258,8 +273,38 @@ module nios (
 		.Read       (mm_interconnect_0_ultrasound_0_avalon_slave_0_read),       //               .read
 		.ReadData   (mm_interconnect_0_ultrasound_0_avalon_slave_0_readdata),   //               .readdata
 		.nReset     (~rst_controller_001_reset_out_reset),                      //     reset_sink.reset_n
-		.Echo       (ultrasound_export_echo),                                   //    conduit_end.echo
-		.Trig       (ultrasound_export_trig)                                    //               .trig
+		.Echo       (ultrasound_export_0_echo),                                 //    conduit_end.echo
+		.Trig       (ultrasound_export_0_trig)                                  //               .trig
+	);
+
+	Ultrasound ultrasound_1 (
+		.Clk        (clk_clk),                                                  //          clock.clk
+		.ChipSelect (mm_interconnect_0_ultrasound_1_avalon_slave_0_chipselect), // avalon_slave_0.chipselect
+		.Read       (mm_interconnect_0_ultrasound_1_avalon_slave_0_read),       //               .read
+		.ReadData   (mm_interconnect_0_ultrasound_1_avalon_slave_0_readdata),   //               .readdata
+		.nReset     (~rst_controller_001_reset_out_reset),                      //     reset_sink.reset_n
+		.Echo       (ultrasound_export_1_echo),                                 //    conduit_end.echo
+		.Trig       (ultrasound_export_1_trig)                                  //               .trig
+	);
+
+	Ultrasound ultrasound_2 (
+		.Clk        (clk_clk),                                                  //          clock.clk
+		.ChipSelect (mm_interconnect_0_ultrasound_2_avalon_slave_0_chipselect), // avalon_slave_0.chipselect
+		.Read       (mm_interconnect_0_ultrasound_2_avalon_slave_0_read),       //               .read
+		.ReadData   (mm_interconnect_0_ultrasound_2_avalon_slave_0_readdata),   //               .readdata
+		.nReset     (~rst_controller_001_reset_out_reset),                      //     reset_sink.reset_n
+		.Echo       (ultrasound_export_2_echo),                                 //    conduit_end.echo
+		.Trig       (ultrasound_export_2_trig)                                  //               .trig
+	);
+
+	Ultrasound ultrasound_3 (
+		.Clk        (clk_clk),                                                  //          clock.clk
+		.ChipSelect (mm_interconnect_0_ultrasound_3_avalon_slave_0_chipselect), // avalon_slave_0.chipselect
+		.Read       (mm_interconnect_0_ultrasound_3_avalon_slave_0_read),       //               .read
+		.ReadData   (mm_interconnect_0_ultrasound_3_avalon_slave_0_readdata),   //               .readdata
+		.nReset     (~rst_controller_001_reset_out_reset),                      //     reset_sink.reset_n
+		.Echo       (ultrasound_export_3_echo),                                 //    conduit_end.echo
+		.Trig       (ultrasound_export_3_trig)                                  //               .trig
 	);
 
 	nios_mm_interconnect_0 mm_interconnect_0 (
@@ -338,7 +383,16 @@ module nios (
 		.timer_0_s1_chipselect                        (mm_interconnect_0_timer_0_s1_chipselect),                   //                                       .chipselect
 		.ultrasound_0_avalon_slave_0_read             (mm_interconnect_0_ultrasound_0_avalon_slave_0_read),        //            ultrasound_0_avalon_slave_0.read
 		.ultrasound_0_avalon_slave_0_readdata         (mm_interconnect_0_ultrasound_0_avalon_slave_0_readdata),    //                                       .readdata
-		.ultrasound_0_avalon_slave_0_chipselect       (mm_interconnect_0_ultrasound_0_avalon_slave_0_chipselect)   //                                       .chipselect
+		.ultrasound_0_avalon_slave_0_chipselect       (mm_interconnect_0_ultrasound_0_avalon_slave_0_chipselect),  //                                       .chipselect
+		.ultrasound_1_avalon_slave_0_read             (mm_interconnect_0_ultrasound_1_avalon_slave_0_read),        //            ultrasound_1_avalon_slave_0.read
+		.ultrasound_1_avalon_slave_0_readdata         (mm_interconnect_0_ultrasound_1_avalon_slave_0_readdata),    //                                       .readdata
+		.ultrasound_1_avalon_slave_0_chipselect       (mm_interconnect_0_ultrasound_1_avalon_slave_0_chipselect),  //                                       .chipselect
+		.ultrasound_2_avalon_slave_0_read             (mm_interconnect_0_ultrasound_2_avalon_slave_0_read),        //            ultrasound_2_avalon_slave_0.read
+		.ultrasound_2_avalon_slave_0_readdata         (mm_interconnect_0_ultrasound_2_avalon_slave_0_readdata),    //                                       .readdata
+		.ultrasound_2_avalon_slave_0_chipselect       (mm_interconnect_0_ultrasound_2_avalon_slave_0_chipselect),  //                                       .chipselect
+		.ultrasound_3_avalon_slave_0_read             (mm_interconnect_0_ultrasound_3_avalon_slave_0_read),        //            ultrasound_3_avalon_slave_0.read
+		.ultrasound_3_avalon_slave_0_readdata         (mm_interconnect_0_ultrasound_3_avalon_slave_0_readdata),    //                                       .readdata
+		.ultrasound_3_avalon_slave_0_chipselect       (mm_interconnect_0_ultrasound_3_avalon_slave_0_chipselect)   //                                       .chipselect
 	);
 
 	nios_irq_mapper irq_mapper (

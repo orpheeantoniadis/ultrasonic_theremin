@@ -27,6 +27,7 @@ component i2s is
     CLOCK  : in std_logic; -- wrapped to MCLK (need PLL)
     enable : in std_logic;
     data   : in std_logic_vector(31 downto 0) := (others => '0');
+		ready	 : out std_logic; -- 32 bits sent
     MCLK   : out std_logic := '0'; -- Master clock
     LRCK   : out std_logic := '0'; -- Left/right select
     SD     : out std_logic := '0'; -- Data out
@@ -39,13 +40,19 @@ signal iRegCtrl  : std_logic_vector(7 downto 0) := (others => '0');
 --signal iRegDataL  : std_logic_vector(15 downto 0) := (others => '0');
 --signal iRegDataR  : std_logic_vector(15 downto 0) := (others => '0');
 signal iRegData : std_logic_vector(31 downto 0) := (others => '0');
+signal iRegBuffer : std_logic_vector(31 downto 0) := (others => '0');
+
+------- datas --------
+signal sent : std_logic := '0';
+signal en : std_logic := '0';
 
 begin
 
 	i2s_comp: i2s port map(
   CLOCK  => clock,
-  enable => iRegCtrl(0), -- whe bit0 iRegCtrl = 1, enable i2s component directly
+  enable => en, -- whe bit0 iRegCtrl = 1, enable i2s component directly
   data   => iRegData,
+	ready	 => sent,
   MCLK   => GPIO_2_D0,
   LRCK   => GPIO_2_D1,
   SD     => GPIO_2_D2,
@@ -56,25 +63,48 @@ begin
 	begin
 	  if nReset = '0' then
 	    iRegCtrl <= (others => '0');
-	    iRegData <= (others => '0');
+	    iRegBuffer <= (others => '0');
 	  elsif rising_edge(clock) then
 	    if chip_select = '1' and write = '1' then -- write cycle
 	      case addresse is
 	        when "000" => iRegCtrl  <= write_data(7 downto 0);
-	        when "001" => iRegData(31 downto 16) <= write_data; -- write left
-					when "010" => iRegData(15 downto 0) <= write_data;  -- write right
+	        when "001" => iRegBuffer(31 downto 16) <= write_data; -- write left
+			  when "010" => iRegBuffer(15 downto 0) <= write_data;  -- write right
 	        when others => null;
 	      end case;
 	    end if;
+			-- if sent = '1' then
+			-- 	iRegCtrl(1) <= '1';
+			-- end if;
 	  end if;
 	end process pRegWr;
 
+	pSent : process(sent)
+	begin
+		if sent = '1' then
+			iRegData <= iRegBuffer;
+		end if;
+	end process pSent;
+
+	-- IRQ process
+	-- pIRQ : process(iRegCtrl)
+	-- begin
+	-- 	if iRegCtrl(1) = '1' then
+	-- 		irq <= '1';
+	-- 	else
+	-- 		irq <= '0';
+	-- 	end if;
+	-- end process pIRQ;
+
 	-- control process
-			-- pRegCtrl : process(iRegCtrl)
-			-- begin
-			-- 	if iRegCtrl
-			-- 	end if;
-			-- end process pRegCtrl;
+	pRegCtrl : process(iRegCtrl)
+	begin
+		if iRegCtrl(0) = '1' then
+			en <= '1';
+		else
+			en <= '0';
+		end if;
+	end process pRegCtrl;
 
 
 end behavioral;

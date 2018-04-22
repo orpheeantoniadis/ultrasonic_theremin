@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu' in SOPC Builder design 'nios'
  * SOPC Builder design path: Z:/fpga/mini_projet/theremin_nios/quartus/nios.sopcinfo
  *
- * Generated: Wed Apr 18 18:27:06 CEST 2018
+ * Generated: Thu Apr 19 17:16:15 CEST 2018
  */
 
 /*
@@ -62,18 +62,18 @@
 
 #define ALT_CPU_ARCHITECTURE "altera_nios2_gen2"
 #define ALT_CPU_BIG_ENDIAN 0
-#define ALT_CPU_BREAK_ADDR 0x00008820
+#define ALT_CPU_BREAK_ADDR 0x00010820
 #define ALT_CPU_CPU_ARCH_NIOS2_R1
 #define ALT_CPU_CPU_FREQ 50000000u
 #define ALT_CPU_CPU_ID_SIZE 1
 #define ALT_CPU_CPU_ID_VALUE 0x00000000
 #define ALT_CPU_CPU_IMPLEMENTATION "fast"
-#define ALT_CPU_DATA_ADDR_WIDTH 0x10
+#define ALT_CPU_DATA_ADDR_WIDTH 0x11
 #define ALT_CPU_DCACHE_BYPASS_MASK 0x80000000
 #define ALT_CPU_DCACHE_LINE_SIZE 32
 #define ALT_CPU_DCACHE_LINE_SIZE_LOG2 5
 #define ALT_CPU_DCACHE_SIZE 2048
-#define ALT_CPU_EXCEPTION_ADDR 0x00004020
+#define ALT_CPU_EXCEPTION_ADDR 0x00008020
 #define ALT_CPU_FLASH_ACCELERATOR_LINES 0
 #define ALT_CPU_FLASH_ACCELERATOR_LINE_SIZE 0
 #define ALT_CPU_FLUSHDA_SUPPORTED
@@ -90,11 +90,11 @@
 #define ALT_CPU_ICACHE_LINE_SIZE_LOG2 5
 #define ALT_CPU_ICACHE_SIZE 4096
 #define ALT_CPU_INITDA_SUPPORTED
-#define ALT_CPU_INST_ADDR_WIDTH 0x10
+#define ALT_CPU_INST_ADDR_WIDTH 0x11
 #define ALT_CPU_NAME "cpu"
 #define ALT_CPU_NUM_OF_SHADOW_REG_SETS 0
 #define ALT_CPU_OCI_VERSION 1
-#define ALT_CPU_RESET_ADDR 0x00004000
+#define ALT_CPU_RESET_ADDR 0x00008000
 
 
 /*
@@ -103,18 +103,18 @@
  */
 
 #define NIOS2_BIG_ENDIAN 0
-#define NIOS2_BREAK_ADDR 0x00008820
+#define NIOS2_BREAK_ADDR 0x00010820
 #define NIOS2_CPU_ARCH_NIOS2_R1
 #define NIOS2_CPU_FREQ 50000000u
 #define NIOS2_CPU_ID_SIZE 1
 #define NIOS2_CPU_ID_VALUE 0x00000000
 #define NIOS2_CPU_IMPLEMENTATION "fast"
-#define NIOS2_DATA_ADDR_WIDTH 0x10
+#define NIOS2_DATA_ADDR_WIDTH 0x11
 #define NIOS2_DCACHE_BYPASS_MASK 0x80000000
 #define NIOS2_DCACHE_LINE_SIZE 32
 #define NIOS2_DCACHE_LINE_SIZE_LOG2 5
 #define NIOS2_DCACHE_SIZE 2048
-#define NIOS2_EXCEPTION_ADDR 0x00004020
+#define NIOS2_EXCEPTION_ADDR 0x00008020
 #define NIOS2_FLASH_ACCELERATOR_LINES 0
 #define NIOS2_FLASH_ACCELERATOR_LINE_SIZE 0
 #define NIOS2_FLUSHDA_SUPPORTED
@@ -130,10 +130,10 @@
 #define NIOS2_ICACHE_LINE_SIZE_LOG2 5
 #define NIOS2_ICACHE_SIZE 4096
 #define NIOS2_INITDA_SUPPORTED
-#define NIOS2_INST_ADDR_WIDTH 0x10
+#define NIOS2_INST_ADDR_WIDTH 0x11
 #define NIOS2_NUM_OF_SHADOW_REG_SETS 0
 #define NIOS2_OCI_VERSION 1
-#define NIOS2_RESET_ADDR 0x00004000
+#define NIOS2_RESET_ADDR 0x00008000
 
 
 /*
@@ -159,7 +159,7 @@
  */
 
 #define ALT_MODULE_CLASS_I2S_0 I2S
-#define I2S_0_BASE 0x9120
+#define I2S_0_BASE 0x11150
 #define I2S_0_IRQ -1
 #define I2S_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define I2S_0_NAME "/dev/I2S_0"
@@ -173,13 +173,13 @@
  */
 
 #define ALT_MODULE_CLASS_Sys_ID altera_avalon_sysid_qsys
-#define SYS_ID_BASE 0x9160
+#define SYS_ID_BASE 0x11160
 #define SYS_ID_ID 0
 #define SYS_ID_IRQ -1
 #define SYS_ID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYS_ID_NAME "/dev/Sys_ID"
 #define SYS_ID_SPAN 8
-#define SYS_ID_TIMESTAMP 1524068500
+#define SYS_ID_TIMESTAMP 1524150672
 #define SYS_ID_TYPE "altera_avalon_sysid_qsys"
 
 
@@ -199,19 +199,19 @@
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
 #define ALT_STDERR "/dev/jtag_uart"
-#define ALT_STDERR_BASE 0x9168
+#define ALT_STDERR_BASE 0x11168
 #define ALT_STDERR_DEV jtag_uart
 #define ALT_STDERR_IS_JTAG_UART
 #define ALT_STDERR_PRESENT
 #define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDIN "/dev/jtag_uart"
-#define ALT_STDIN_BASE 0x9168
+#define ALT_STDIN_BASE 0x11168
 #define ALT_STDIN_DEV jtag_uart
 #define ALT_STDIN_IS_JTAG_UART
 #define ALT_STDIN_PRESENT
 #define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDOUT "/dev/jtag_uart"
-#define ALT_STDOUT_BASE 0x9168
+#define ALT_STDOUT_BASE 0x11168
 #define ALT_STDOUT_DEV jtag_uart
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
@@ -224,7 +224,7 @@
  *
  */
 
-#define ALTPLL_0_BASE 0x9130
+#define ALTPLL_0_BASE 0x11140
 #define ALTPLL_0_IRQ -1
 #define ALTPLL_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define ALTPLL_0_NAME "/dev/altpll_0"
@@ -250,7 +250,7 @@
  */
 
 #define ALT_MODULE_CLASS_jtag_uart altera_avalon_jtag_uart
-#define JTAG_UART_BASE 0x9168
+#define JTAG_UART_BASE 0x11168
 #define JTAG_UART_IRQ 0
 #define JTAG_UART_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define JTAG_UART_NAME "/dev/jtag_uart"
@@ -268,7 +268,7 @@
  */
 
 #define ALT_MODULE_CLASS_ledmatrix_0 LedMatrix
-#define LEDMATRIX_0_BASE 0x9000
+#define LEDMATRIX_0_BASE 0x11000
 #define LEDMATRIX_0_IRQ -1
 #define LEDMATRIX_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define LEDMATRIX_0_NAME "/dev/ledmatrix_0"
@@ -282,7 +282,7 @@
  */
 
 #define ALT_MODULE_CLASS_ledsA altera_avalon_pio
-#define LEDSA_BASE 0x9150
+#define LEDSA_BASE 0x11130
 #define LEDSA_BIT_CLEARING_EDGE_REGISTER 0
 #define LEDSA_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define LEDSA_CAPTURE 0
@@ -309,7 +309,7 @@
  */
 
 #define ALT_MODULE_CLASS_ledsB altera_avalon_pio
-#define LEDSB_BASE 0x9140
+#define LEDSB_BASE 0x11120
 #define LEDSB_BIT_CLEARING_EDGE_REGISTER 0
 #define LEDSB_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define LEDSB_CAPTURE 0
@@ -338,7 +338,7 @@
 #define ALT_MODULE_CLASS_onchip_ram altera_avalon_onchip_memory2
 #define ONCHIP_RAM_ALLOW_IN_SYSTEM_MEMORY_CONTENT_EDITOR 0
 #define ONCHIP_RAM_ALLOW_MRAM_SIM_CONTENTS_ONLY_FILE 0
-#define ONCHIP_RAM_BASE 0x4000
+#define ONCHIP_RAM_BASE 0x8000
 #define ONCHIP_RAM_CONTENTS_INFO ""
 #define ONCHIP_RAM_DUAL_PORT 0
 #define ONCHIP_RAM_GUI_RAM_BLOCK_TYPE "AUTO"
@@ -353,8 +353,8 @@
 #define ONCHIP_RAM_READ_DURING_WRITE_MODE "DONT_CARE"
 #define ONCHIP_RAM_SINGLE_CLOCK_OP 0
 #define ONCHIP_RAM_SIZE_MULTIPLE 1
-#define ONCHIP_RAM_SIZE_VALUE 16384
-#define ONCHIP_RAM_SPAN 16384
+#define ONCHIP_RAM_SIZE_VALUE 32768
+#define ONCHIP_RAM_SPAN 32768
 #define ONCHIP_RAM_TYPE "altera_avalon_onchip_memory2"
 #define ONCHIP_RAM_WRITABLE 1
 
@@ -366,21 +366,21 @@
 
 #define ALT_MODULE_CLASS_timer_0 altera_avalon_timer
 #define TIMER_0_ALWAYS_RUN 0
-#define TIMER_0_BASE 0x9100
+#define TIMER_0_BASE 0x11100
 #define TIMER_0_COUNTER_SIZE 32
 #define TIMER_0_FIXED_PERIOD 0
 #define TIMER_0_FREQ 50000000
 #define TIMER_0_IRQ 1
 #define TIMER_0_IRQ_INTERRUPT_CONTROLLER_ID 0
-#define TIMER_0_LOAD_VALUE 49999
-#define TIMER_0_MULT 0.001
+#define TIMER_0_LOAD_VALUE 4999
+#define TIMER_0_MULT 1.0E-6
 #define TIMER_0_NAME "/dev/timer_0"
-#define TIMER_0_PERIOD 1
-#define TIMER_0_PERIOD_UNITS "ms"
+#define TIMER_0_PERIOD 100
+#define TIMER_0_PERIOD_UNITS "us"
 #define TIMER_0_RESET_OUTPUT 0
 #define TIMER_0_SNAPSHOT 1
 #define TIMER_0_SPAN 32
-#define TIMER_0_TICKS_PER_SEC 1000
+#define TIMER_0_TICKS_PER_SEC 10000
 #define TIMER_0_TIMEOUT_PULSE_OUTPUT 0
 #define TIMER_0_TYPE "altera_avalon_timer"
 
@@ -391,11 +391,53 @@
  */
 
 #define ALT_MODULE_CLASS_ultrasound_0 Ultrasound
-#define ULTRASOUND_0_BASE 0x9170
+#define ULTRASOUND_0_BASE 0x1117c
 #define ULTRASOUND_0_IRQ -1
 #define ULTRASOUND_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define ULTRASOUND_0_NAME "/dev/ultrasound_0"
 #define ULTRASOUND_0_SPAN 4
 #define ULTRASOUND_0_TYPE "Ultrasound"
+
+
+/*
+ * ultrasound_1 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_ultrasound_1 Ultrasound
+#define ULTRASOUND_1_BASE 0x11178
+#define ULTRASOUND_1_IRQ -1
+#define ULTRASOUND_1_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ULTRASOUND_1_NAME "/dev/ultrasound_1"
+#define ULTRASOUND_1_SPAN 4
+#define ULTRASOUND_1_TYPE "Ultrasound"
+
+
+/*
+ * ultrasound_2 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_ultrasound_2 Ultrasound
+#define ULTRASOUND_2_BASE 0x11174
+#define ULTRASOUND_2_IRQ -1
+#define ULTRASOUND_2_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ULTRASOUND_2_NAME "/dev/ultrasound_2"
+#define ULTRASOUND_2_SPAN 4
+#define ULTRASOUND_2_TYPE "Ultrasound"
+
+
+/*
+ * ultrasound_3 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_ultrasound_3 Ultrasound
+#define ULTRASOUND_3_BASE 0x11170
+#define ULTRASOUND_3_IRQ -1
+#define ULTRASOUND_3_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ULTRASOUND_3_NAME "/dev/ultrasound_3"
+#define ULTRASOUND_3_SPAN 4
+#define ULTRASOUND_3_TYPE "Ultrasound"
 
 #endif /* __SYSTEM_H_ */

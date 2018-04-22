@@ -3,7 +3,7 @@
 # Machine generated for CPU 'cpu' in SOPC Builder design 'nios'
 # SOPC Builder design path: Z:/fpga/mini_projet/theremin_nios/quartus/nios.sopcinfo
 #
-# Generated: Thu Mar 29 15:46:20 CEST 2018
+# Generated: Thu Apr 19 14:11:13 CEST 2018
 
 # DO NOT MODIFY THIS FILE
 #
@@ -47,4 +47,4 @@
 # by allowing GDB to cache memory contents on the host.
 
 # onchip_ram
-memory 0x4000 0x8000 cache
+memory 0x8000 0x10000 cache

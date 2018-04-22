@@ -14,111 +14,7 @@
 #include "os/alt_hooks.h"
 #include "alt_types.h"
 
-/*-------------------------------------------------------*/
-/*									Switch led functions								 */
-/*-------------------------------------------------------*/
-
-static inline void init_switch_leds(void) {
-	IOWR_8DIRECT(LEDSA_BASE, 0, 0xff);
-	IOWR_8DIRECT(LEDSB_BASE, 0, 0xff);
-}
-
-static inline void set_switch_ledA(uint8_t data) { IOWR_8DIRECT(LEDSA_BASE, 0, data); }
-static inline void set_switch_ledB(uint8_t data) { IOWR_8DIRECT(LEDSB_BASE, 0, data); }
-
-/*-------------------------------------------------------*/
-/*										Timer functions								 		 */
-/*-------------------------------------------------------*/
-
-void timer_interrupt(void *context, alt_u32 id);
-
-static inline void init_timer(void) {
-	alt_irq_register(TIMER_0_IRQ, (void* )2, (alt_isr_func)timer_interrupt);
-	IOWR_16DIRECT(TIMER_0_BASE, 4, 7); // start timer + cont + ir
-}
-
-static inline void clear_timer_interrupt(void) { IOWR_16DIRECT(TIMER_0_BASE, 0, 1); }
-
-/*-------------------------------------------------------*/
-/*									LED MATRIX functions								 */
-/*-------------------------------------------------------*/
-
-#define PIXEL_COUNT		96
-#define MATRIX_RED		4
-#define MATRIX_GREEN	2
-#define MATRIX_BLUE		1
-
-const uint8_t empty_matrix[PIXEL_COUNT] =
-{
-		0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,
-};
-
-static inline void set_pixel(uint8_t x, uint8_t y, uint8_t rgb) { IOWR_16DIRECT(LEDMATRIX_0_BASE, (y*12+x)*2, rgb); }
-
-void set_column(uint8_t x, uint8_t amplitude, uint8_t rgb) {
-	int i;
-	
-	for (i = 7; i > (7-amplitude); i--) {
-		set_pixel(x, i, rgb);
-	}
-}
-
-void set_matrix(uint8_t matrix[PIXEL_COUNT]) {
-	uint8_t i;
-
-	for (i = 0; i < PIXEL_COUNT; i++) {
-		IOWR_16DIRECT(LEDMATRIX_0_BASE, i*2, matrix[i]);
-	}
-}
-
-/*-------------------------------------------------------*/
-/*									Ultrasound functions								 */
-/*-------------------------------------------------------*/
-
-float get_distance(uint16_t ultrasound) {
-	uint32_t ticks;
-	uint8_t ticks_LSB, ticks_MSB;
-	float time, dist;
-
-	ticks = IORD_32DIRECT(ultrasound, 0);
-	time = (ticks * 20) * 1e-3;
-	dist = time / 58;
-
-	ticks_LSB = (ticks >> 8) & 0xff;
-	ticks_MSB = (ticks >> 16) & 0xff;
-
-	set_switch_ledA(ticks_MSB);
-	set_switch_ledB(ticks_LSB);
-
-	return dist;
-}
-
-int get_amplitude(int distance) {
-	// hand very close to the ultrasound so max amplitude
-	if (distance < 3) {
-		return 8;
-	// hand far from the ultrasound so min amplitude
-	} else if (distance > 35) {
-		return 0;
-	// amplitude level calculation (we got 8 levels of 4 points of amplitude)
-	} else {
-		return (32 - (distance - 3)) / 4);
-	}
-}
-
-/*-------------------------------------------------------*/
-/*										I2S functions								 			 */
-/*-------------------------------------------------------*/
-
-#define SIZE 		2048
-#define FREQ_DO	110
+#define SIZE 2048
 
 const float sin_tab[SIZE] = {
 	0.000000, 0.003068, 0.006136, 0.009204, 0.012272, 0.015339, 0.018407, 0.021474, 0.024541,
@@ -379,37 +275,209 @@ const float sin_tab[SIZE] = {
 	-0.021474, -0.018407, -0.015339, -0.012272, -0.009204, -0.006136, -0.003068
 };
 
+
+/*-------------------------------------------------------*/
+/*					Switch led functions				 */
+/*-------------------------------------------------------*/
+
+static inline void init_switch_leds(void) {
+	IOWR_8DIRECT(LEDSA_BASE, 0, 0xff);
+	IOWR_8DIRECT(LEDSB_BASE, 0, 0xff);
+}
+
+static inline void set_switch_ledA(uint8_t data) { IOWR_8DIRECT(LEDSA_BASE, 0, data); }
+static inline void set_switch_ledB(uint8_t data) { IOWR_8DIRECT(LEDSB_BASE, 0, data); }
+
+/*-------------------------------------------------------*/
+/*					Timer functions						 */
+/*-------------------------------------------------------*/
+
+void timer_interrupt(void *context, alt_u32 id);
+
+static inline void init_timer(void) {
+	alt_irq_register(TIMER_0_IRQ, (void* )2, (alt_isr_func)timer_interrupt);
+	IOWR_16DIRECT(TIMER_0_BASE, 4, 7); // start timer + cont + ir
+}
+
+static inline void clear_timer_interrupt(void) { IOWR_16DIRECT(TIMER_0_BASE, 0, 1); }
+
+/*-------------------------------------------------------*/
+/*					LED MATRIX functions				 */
+/*-------------------------------------------------------*/
+
+#define PIXEL_COUNT		96
+#define MATRIX_RED		4
+#define MATRIX_GREEN	2
+#define MATRIX_BLUE		1
+
+const uint8_t empty_matrix[PIXEL_COUNT] =
+{
+		0,0,0,0,0,0,0,0,0,0,0,0,
+		0,0,0,0,0,0,0,0,0,0,0,0,
+		0,0,0,0,0,0,0,0,0,0,0,0,
+		0,0,0,0,0,0,0,0,0,0,0,0,
+		0,0,0,0,0,0,0,0,0,0,0,0,
+		0,0,0,0,0,0,0,0,0,0,0,0,
+		0,0,0,0,0,0,0,0,0,0,0,0,
+		0,0,0,0,0,0,0,0,0,0,0,0,
+};
+
+static inline void set_pixel(uint8_t x, uint8_t y, uint8_t rgb) { IOWR_16DIRECT(LEDMATRIX_0_BASE, (y*12+x)*2, rgb); }
+
+void set_column(uint8_t x, uint8_t amplitude, uint8_t rgb) {
+	int i;
+	
+	for (i = 0; i < 8; i++) {
+		if (i > (7-amplitude)) {
+			set_pixel(x, i, rgb);
+		} else {
+			set_pixel(x, i, 0);
+		}
+	}
+}
+
+void set_matrix(const uint8_t matrix[PIXEL_COUNT]) {
+	uint8_t i;
+
+	for (i = 0; i < PIXEL_COUNT; i++) {
+		IOWR_16DIRECT(LEDMATRIX_0_BASE, i*2, matrix[i]);
+	}
+}
+
+/*-------------------------------------------------------*/
+/*				Ultrasound functions					 */
+/*-------------------------------------------------------*/
+
+#define MIN_DIST 2
+#define MAX_DIST 26
+#define LEVEL_SIZE ((MAX_DIST-MIN_DIST)/8)
+
+float get_distance(uint32_t ultrasound) {
+	uint32_t ticks;
+	uint8_t ticks_LSB, ticks_MSB;
+	float time, dist;
+
+	ticks = IORD_32DIRECT(ultrasound, 0);
+	time = (ticks * 20) * 1e-3;
+	dist = time / 58;
+
+	ticks_LSB = (ticks >> 8) & 0xff;
+	ticks_MSB = (ticks >> 16) & 0xff;
+
+	set_switch_ledA(ticks_MSB);
+	set_switch_ledB(ticks_LSB);
+
+	return dist;
+}
+
+int get_amplitude(int distance) {
+	// hand very close to the ultrasound so max amplitude
+	if (distance < MIN_DIST) {
+		return 8;
+	// hand far from the ultrasound so min amplitude
+	} else if (distance > MAX_DIST) {
+		return 0;
+	// amplitude level calculation (we got 8 levels of 4 points of amplitude)
+	} else {
+		return (((MAX_DIST-MIN_DIST)-(distance-MIN_DIST)) / LEVEL_SIZE);
+	}
+}
+
+/*-------------------------------------------------------*/
+/*					I2S functions						 */
+/*-------------------------------------------------------*/
+
+#define FREQ_DO	 19 // division de Fe/Fdo = 10000/523.3 = ~19
+#define FREQ_LA	 23  // division de Fe/Fla = 10000/440  = ~23
+#define FREQ_SI	 20  // division de Fe/Fsi = 10000/493.9 = ~20
+#define FREQ_SOL 25  // division de Fe/Fsol = 10000/392 = ~25
+
 static inline void init_i2s(void) {
-	IOWR_8DIRECT(I2S_1_BASE,0,0x00);
-	IOWR_8DIRECT(I2S_1_BASE,0,0x01);
+	IOWR_8DIRECT(I2S_0_BASE,0,0x00);
+	IOWR_8DIRECT(I2S_0_BASE,0,0x01);
 }
 
 void write_i2s_stereo(int16_t sample) {
-	IOWR_16DIRECT(I2S_1_BASE,2,(int16_t)sample);
-	IOWR_16DIRECT(I2S_1_BASE,4,(int16_t)sample);
+	IOWR_16DIRECT(I2S_0_BASE,2,(int16_t)sample);
+	IOWR_16DIRECT(I2S_0_BASE,4,(int16_t)sample);
 }
 
 /*-------------------------------------------------------*/
-/*												Main													 */
+/*						Main							 */
 /*-------------------------------------------------------*/
 
-float distance0;
+#define MULTIPLE	5000
 
+float distance0;
+float distance1;
+float distance2;
+float distance3;
+
+// nécessaire pour DO
 int pas_do = SIZE/FREQ_DO;
 int increm_do = SIZE/FREQ_DO;
 float c0 = 0;
 
+// nécessaire pour LA
+int pas_la = SIZE/FREQ_LA;
+int increm_la = SIZE/FREQ_LA;
+float c2 = 0;
+
+// nécessaire pour SI
+int pas_si = SIZE/FREQ_SI;
+int increm_si = SIZE/FREQ_SI;
+float c3 = 0;
+
+// nécessaire pour SOL
+int pas_sol = SIZE/FREQ_SOL;
+int increm_sol = SIZE/FREQ_SOL;
+float c1 = 0;
+
 void timer_interrupt(void *context, alt_u32 id) {
 	int amplitude0;
+	int amplitude1;
+	int amplitude2;
+	int amplitude3;
+	float sample;
 	
-	if (distance > 35) {
+	if (distance0 > MAX_DIST) {
 		amplitude0 = 0;
 	} else {
-		amplitude0 = ((35 - distance0) / 35) * 20000;
+		amplitude0 = ((MAX_DIST - distance0) / MAX_DIST) * MULTIPLE;
 	}
+
+	if (distance1 > MAX_DIST) {
+		amplitude1 = 0;
+	} else {
+		amplitude1 = ((MAX_DIST - distance1) / MAX_DIST) * MULTIPLE;
+	}
+
+	if (distance2 > MAX_DIST) {
+		amplitude2 = 0;
+	} else {
+		amplitude2 = ((MAX_DIST - distance2) / MAX_DIST) * MULTIPLE;
+	}
+
+	if (distance3 > MAX_DIST) {
+		amplitude3 = 0;
+	} else {
+		amplitude3 = ((MAX_DIST - distance3) / MAX_DIST) * MULTIPLE;
+	}
+
 	increm_do = (increm_do+pas_do) % SIZE;
 	c0 = amplitude0*sin_tab[increm_do];
-	write_i2s_stereo((int16_t)c0);
+
+	increm_sol = (increm_sol+pas_sol) % SIZE;
+	c1 = amplitude1*sin_tab[increm_sol];
+
+	increm_la = (increm_la+pas_la) % SIZE;
+	c2 = amplitude2*sin_tab[increm_la];
+
+	increm_si = (increm_si+pas_si) % SIZE;
+	c3 = amplitude3*sin_tab[increm_si];
+
+	sample = c0 + c1 + c2 + c3;
+	write_i2s_stereo((int16_t)sample);
 	clear_timer_interrupt();
 }
 
@@ -421,7 +489,13 @@ int main() {
 
 	while(1) {
 		// display first ultrasound measure
-		distance = get_distance(ULTRASOUND_0_BASE);
-		set_column(2, get_amplitude((int)distance), MATRIX_GREEN);
+		distance0 = get_distance(ULTRASOUND_0_BASE);
+		set_column(1, get_amplitude((int)distance0), MATRIX_GREEN);
+		distance1 = get_distance(ULTRASOUND_1_BASE);
+		set_column(3, get_amplitude((int)distance1), MATRIX_GREEN);
+		distance2 = get_distance(ULTRASOUND_2_BASE);
+		set_column(5, get_amplitude((int)distance2), MATRIX_GREEN);
+		distance3 = get_distance(ULTRASOUND_3_BASE);
+		set_column(7, get_amplitude((int)distance3), MATRIX_GREEN);
 	}
 }

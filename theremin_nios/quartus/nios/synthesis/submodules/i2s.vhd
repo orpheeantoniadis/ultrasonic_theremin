@@ -7,6 +7,8 @@ entity i2s is
 		CLOCK  : in std_logic; -- wrapped to MCLK (need PLL)
 		enable : in std_logic;
 		data   : in std_logic_vector(31 downto 0) := (others => '0');
+		ready	 : out std_logic := '0'; -- 32 bits sent
+
 		MCLK   : out std_logic := '0'; -- Master clock
 		LRCK   : out std_logic := '0'; -- Left/right select
 		SD     : out std_logic := '0'; -- Data out
@@ -38,12 +40,13 @@ begin
 	MCLK <= CLOCK when enable = '1' else
 			'0';
 	LRCK <= blrck;
-	SCK <= bsck; -- attention avec les signaux et les sorties, ça marche enfin !
+	SCK <= bsck; -- attention avec les signaux et les sorties, ca marche enfin !
 
 	-- clocks manager process
 	process(CLOCK,enable)
 	begin
 			if rising_edge(CLOCK) then
+				ready <= '0';
 				if enable='1' then
 					LRCK_c <= LRCK_c+1;
 					SCK_c <= SCK_c+1;
@@ -63,6 +66,7 @@ begin
 						DATA_c <= (others => '0');
 						if bit_count = 31 then
 							bit_count <= 0;
+							ready <= '1';
 						end if;
 					end if;
 				else

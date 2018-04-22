@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>18 avr. 2018 18:27:03</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1524068823183</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>19 avr. 2018 17:24:47</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1524151487543</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>Z:\fpga\mini_projet\theremin_nios\eclipse\src\ultrasonic_theremin_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>Z:\fpga\mini_projet\theremin_nios\quartus\nios.sopcinfo</SopcDesignFile>
@@ -900,61 +900,79 @@
         </Setting>
         <MemoryMap>
                 <slaveDescriptor>onchip_ram</slaveDescriptor>
-                <addressRange>0x00004000 - 0x00007FFF</addressRange>
-                <addressSpan>16384</addressSpan>
+                <addressRange>0x00008000 - 0x0000FFFF</addressRange>
+                <addressSpan>32768</addressSpan>
                 <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>ledmatrix_0</slaveDescriptor>
-                <addressRange>0x00009000 - 0x000090FF</addressRange>
+                <addressRange>0x00011000 - 0x000110FF</addressRange>
                 <addressSpan>256</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>timer_0</slaveDescriptor>
-                <addressRange>0x00009100 - 0x0000911F</addressRange>
+                <addressRange>0x00011100 - 0x0001111F</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes>timer</attributes>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>I2S_0</slaveDescriptor>
-                <addressRange>0x00009120 - 0x0000912F</addressRange>
-                <addressSpan>16</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
-                <slaveDescriptor>altpll_0</slaveDescriptor>
-                <addressRange>0x00009130 - 0x0000913F</addressRange>
-                <addressSpan>16</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
                 <slaveDescriptor>ledsB</slaveDescriptor>
-                <addressRange>0x00009140 - 0x0000914F</addressRange>
+                <addressRange>0x00011120 - 0x0001112F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>ledsA</slaveDescriptor>
-                <addressRange>0x00009150 - 0x0000915F</addressRange>
+                <addressRange>0x00011130 - 0x0001113F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>altpll_0</slaveDescriptor>
+                <addressRange>0x00011140 - 0x0001114F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>I2S_0</slaveDescriptor>
+                <addressRange>0x00011150 - 0x0001115F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>Sys_ID</slaveDescriptor>
-                <addressRange>0x00009160 - 0x00009167</addressRange>
+                <addressRange>0x00011160 - 0x00011167</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>jtag_uart</slaveDescriptor>
-                <addressRange>0x00009168 - 0x0000916F</addressRange>
+                <addressRange>0x00011168 - 0x0001116F</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>
         <MemoryMap>
+                <slaveDescriptor>ultrasound_3</slaveDescriptor>
+                <addressRange>0x00011170 - 0x00011173</addressRange>
+                <addressSpan>4</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>ultrasound_2</slaveDescriptor>
+                <addressRange>0x00011174 - 0x00011177</addressRange>
+                <addressSpan>4</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>ultrasound_1</slaveDescriptor>
+                <addressRange>0x00011178 - 0x0001117B</addressRange>
+                <addressSpan>4</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>ultrasound_0</slaveDescriptor>
-                <addressRange>0x00009170 - 0x00009173</addressRange>
+                <addressRange>0x0001117C - 0x0001117F</addressRange>
                 <addressSpan>4</addressSpan>
                 <attributes/>
         </MemoryMap>
